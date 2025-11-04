@@ -1,13 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Github,
-} from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -93,7 +87,7 @@ export default function Footer() {
 
           {/* Brand Section */}
           <div className="text-center">
-            <h2 className="text-5xl md:text-9xl font-extrabold bg-linear-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent font-bitcount">
+            <h2 className="text-5xl md:text-9xl font-extrabold bg-linear-to-r from-black via-purple-500 to-blue-600 bg-clip-text text-transparent dark:from-white dark:via-purple-500 dark:to-blue-600 font-bitcount">
               Rakibutsho<span className="text-red-700 font-mono">.</span>
             </h2>
           </div>
