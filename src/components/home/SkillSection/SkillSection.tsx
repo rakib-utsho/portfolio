@@ -146,16 +146,16 @@ export default function Skills() {
     },
   };
 
-  const floatingVariants = {
-    float: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: [0.42, 0, 0.58, 1] as const, // ✅ fixed
-      },
-    },
-  };
+  // const floatingVariants = {
+  //   float: {
+  //     y: [-10, 10, -10],
+  //     transition: {
+  //       duration: 4,
+  //       repeat: Infinity,
+  //       ease: [0.42, 0, 0.58, 1] as const, // ✅ fixed
+  //     },
+  //   },
+  // };
 
   return (
     <section
@@ -164,7 +164,7 @@ export default function Skills() {
       className="relative py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-white via-blue-50/50 to-white dark:from-slate-950 dark:via-purple-950/20 dark:to-slate-950 overflow-hidden"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* <div className="absolute inset-0 overflow-hidden">
         <motion.div
           variants={floatingVariants}
           animate="float"
@@ -182,7 +182,7 @@ export default function Skills() {
           transition={{ delay: 2 }}
           className="absolute top-1/2 left-1/3 w-16 h-16 bg-cyan-500/5 rounded-full blur-xl"
         />
-      </div>
+      </div> */}
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
@@ -206,7 +206,7 @@ export default function Skills() {
             </span>
           </motion.div> */}
 
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 font-lobster">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 font-lobster">
             Technologies I Work With
           </h2>
 

@@ -76,7 +76,7 @@ export default function Experience() {
       className="relative py-24 px-6 sm:px-8 bg-linear-to-br from-white via-blue-50/50 to-white dark:from-purple-950/20 dark:via-slate-950 dark:to-purple-950/20 overflow-hidden"
     >
       {/* Background gradients */}
-      <motion.div
+      {/* <motion.div
         animate={{ y: [0, -25, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-0 right-10 w-72 h-72 rounded-full blur-3xl"
@@ -85,7 +85,7 @@ export default function Experience() {
         animate={{ y: [0, 20, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-0 left-10 w-80 h-80 rounded-full blur-3xl"
-      />
+      /> */}
 
       {/* Header */}
       <div className="max-w-5xl mx-auto text-center relative z-10 mb-16">
@@ -103,7 +103,7 @@ export default function Experience() {
           </span>
         </motion.div> */}
 
-        <h2 className="text-5xl font-bold mb-4 font-lobster">My Experience</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 font-lobster">My Experience</h2>
         <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto font-serif">
           A journey through innovation, growth, and building impactful digital
           experiences.
