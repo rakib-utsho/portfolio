@@ -34,50 +34,61 @@ export const Navbar = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    // Close mobile menu first
+    // Close mobile menu immediately
     setIsOpen(false);
     
-    // Use setTimeout to ensure the menu is closed before scrolling
+    // Wait for the next tick to ensure DOM is updated
     setTimeout(() => {
-      const elementId = href.replace('#', '');
-      const element = document.getElementById(elementId);
-      // Calculate the position to scroll to (accounting for navbar height)
-      const navbarHeight = 64; // h-16 = 4rem = 64px
-      
-      if (element) {
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarHeight;
+      try {
+        const id = href.replace('#', '');
+        const element = document.getElementById(id);
+        
+        if (element) {
+          // Calculate the position with navbar offset
+          const navbar = document.querySelector('nav') || { offsetHeight: 64 };
+          const navbarHeight = (navbar as HTMLElement).offsetHeight || 64;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-      } else {
-        // Fallback: try regular query selector
-        const fallbackElement = document.querySelector(href);
-        if (fallbackElement) {
-          const fallbackPosition = fallbackElement.getBoundingClientRect().top + window.pageYOffset;
-          const fallbackOffset = fallbackPosition - navbarHeight;
-          
           window.scrollTo({
-            top: fallbackOffset,
-            behavior: "smooth"
+            top: offsetPosition,
+            behavior: 'smooth'
           });
+        } else {
+          console.warn(`Element with id ${id} not found`);
+          // Fallback: try direct anchor navigation
+          window.location.href = href;
         }
+      } catch (error) {
+        console.error('Error scrolling to section:', error);
+        // Final fallback
+        window.location.href = href;
       }
-    }, 100); // Small delay to ensure menu is closed
+    }, 50);
   };
 
-  // Alternative approach using href for direct anchor navigation
-  const handleNavClick = (e: React.MouseEvent, href: string) => {
-    e.preventDefault();
-    scrollToSection(href);
+  // Alternative: Use a more direct approach
+  const handleMobileNavClick = (href: string) => {
+    setIsOpen(false);
+    
+    // Use requestAnimationFrame for better timing
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
   };
 
   if (!mounted) return null;
 
   return (
-    <motion.div
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -89,16 +100,18 @@ export const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href={"/"}>
+          <Link href="/" className="flex items-center">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-2xl bg-linear-to-r from-black/60 via-purple-500 to-blue-600 bg-clip-text text-transparent font-bitcount dark:from-white/75 dark:via-purple-500 dark:to-blue-600 "
+              className="text-2xl bg-linear-to-r from-black/60 via-purple-500 to-blue-600 bg-clip-text text-transparent font-bitcount dark:from-white/75 dark:via-purple-500 dark:to-blue-600"
             >
               RakibUtsho<span className="text-red-700 font-mono">.</span>
             </motion.div>
           </Link>
+
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center justify-between space-x-8">
             {navLinks.map((link, index) => (
               <motion.button
@@ -106,7 +119,7 @@ export const Navbar = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={() => scrollToSection(link.href)}
                 className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200 font-medium font-antic cursor-pointer"
               >
                 {link.name}
@@ -128,7 +141,7 @@ export const Navbar = () => {
             </motion.button>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -142,9 +155,7 @@ export const Navbar = () => {
               )}
             </button>
             <button
-              onClick={() => {
-                setIsOpen(!isOpen);
-              }}
+              onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
               aria-label="Toggle menu"
             >
@@ -153,6 +164,8 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -160,14 +173,14 @@ export const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/80 dark:bg-[#0d0d0d]/80 backdrop-blur-md border-t dark:border-gray-800"
+            className="md:hidden bg-white/95 dark:bg-[#0d0d0d]/95 backdrop-blur-md border-t dark:border-gray-800"
           >
             <div className="px-4 py-4 space-y-3">
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200 font-antic"
+                  onClick={() => handleMobileNavClick(link.href)}
+                  className="block w-full text-left px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200 font-antic text-lg"
                 >
                   {link.name}
                 </button>
@@ -176,6 +189,6 @@ export const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </motion.nav>
   );
 };
