@@ -127,14 +127,14 @@ export const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white dark:bg-[#0d0d0d] border-t dark:border-gray-800"
+            className="md:hidden bg-white/80 dark:bg-[#0d0d0d]/80 backdrop-blur-md border-t dark:border-gray-800"
           >
             <div className="px-4 py-4 space-y-3">
               {navLinks.map((link) => (
                 <button
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  className="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                  className="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200 font-antic"
                 >
                   {link.name}
                 </button>
