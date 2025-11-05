@@ -26,17 +26,23 @@ export const Navbar = () => {
 
   useEffect(() => {
     setMounted(true);
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
+    const navbarHeight = 80; // Height offset for mobile navbar
+
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const position =
+        element.getBoundingClientRect().top + window.scrollY - navbarHeight;
+      window.scrollTo({ top: position, behavior: "smooth" });
       setIsOpen(false);
     }
   };
@@ -66,6 +72,7 @@ export const Navbar = () => {
               RakibUtsho<span className="text-red-700 font-mono">.</span>
             </motion.div>
           </Link>
+
           <div className="hidden md:flex items-center justify-between space-x-8">
             {navLinks.map((link, index) => (
               <motion.button
@@ -79,13 +86,13 @@ export const Navbar = () => {
                 {link.name}
               </motion.button>
             ))}
+
             <motion.button
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8 }}
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-blue-500 dark:hover:bg-purple-500 transition-all duration-300 cursor-pointer"
-              aria-label="Toggle theme"
             >
               {theme === "dark" ? (
                 <Sun className="w-5 h-5 text-gray-800 dark:text-white" />
@@ -100,7 +107,6 @@ export const Navbar = () => {
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-blue-500 dark:hover:bg-purple-500 transition-all duration-300"
-              aria-label="Toggle theme"
             >
               {theme === "dark" ? (
                 <Sun className="w-5 h-5 text-white" />
@@ -109,17 +115,15 @@ export const Navbar = () => {
               )}
             </button>
             <button
-              onClick={() => {
-                setIsOpen(!isOpen);
-              }}
+              onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
-              aria-label="Toggle menu"
             >
               {isOpen ? <X /> : <Menu />}
             </button>
           </div>
         </div>
       </div>
+
       <AnimatePresence>
         {isOpen && (
           <motion.div
