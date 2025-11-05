@@ -88,10 +88,10 @@ export default function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative py-24 px-6 sm:px-10 bg-linear-to-b from-slate-50 via-white to-blue-50/20 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 overflow-hidden"
+      className="relative py-24 px-6 sm:px-10 bg-linear-to-br from-white via-blue-50/50 to-white dark:from-purple-950/20 dark:via-slate-950 dark:to-purple-950/20 overflow-hidden"
     >
       {/* Decorative Glow Orbs */}
-      <motion.div
+      {/* <motion.div
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute -top-20 -left-20 w-96 h-96 bg-linear-to-r from-purple-500/20 to-blue-500/20 blur-3xl rounded-full"
@@ -100,7 +100,7 @@ export default function Projects() {
         animate={{ y: [0, 20, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-linear-to-tl from-blue-500/20 to-cyan-500/20 blur-3xl rounded-full"
-      />
+      /> */}
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
@@ -110,10 +110,10 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-linear-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 font-lobster">
             Featured Projects
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto font-serif">
             Some of my recent work combining creativity, technology, and precision.
           </p>
         </motion.div>
@@ -151,10 +151,10 @@ export default function Projects() {
 
                 {/* Content */}
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-500 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-500 transition-colors duration-300 font-lobster">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 font-antic">
                     {project.description}
                   </p>
 
@@ -162,14 +162,14 @@ export default function Projects() {
                     {project.tech.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium"
+                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium font-serif"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex gap-4 mt-2">
+                  <div className="flex gap-4 mt-2 font-serif">
                     <a
                       href={project.live}
                       target="_blank"

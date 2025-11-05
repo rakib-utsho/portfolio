@@ -3,7 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Briefcase, Calendar, MapPin, Rocket, Star } from "lucide-react";
+import { Briefcase, Calendar, MapPin} from "lucide-react";
 
 const experiences = [
   {
@@ -20,42 +20,32 @@ const experiences = [
       "Participating in code reviews and agile development processes",
     ],
     current: true,
-    tech: ["React", "Next.js", "TypeScript", "Tailwind", "Node.js"],
-    achievements: 5,
+    tech: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Node.js",
+      "Deployment",
+    ],
     type: "Full-time",
   },
+
   {
-    title: "Full Stack Developer",
-    company: "Freelance",
-    location: "Remote",
-    period: "2023 - 2024",
-    duration: "1 year",
-    description: [
-      "Built custom web applications for clients using MERN stack",
-      "Delivered 10+ successful projects with high client satisfaction",
-      "Implemented payment gateways and third-party integrations",
-      "Provided ongoing maintenance and support for deployed applications",
-    ],
-    current: false,
-    tech: ["React", "Node.js", "MongoDB", "Express", "Firebase"],
-    achievements: 12,
-    type: "Contract",
-  },
-  {
-    title: "Software Development Intern",
-    company: "Tech Solutions Ltd",
+    title: "Software Quality Assurance (SQA) Intern",
+    company: "Bangladesh Computer Council (BCC)",
     location: "Dhaka, Bangladesh",
-    period: "2023",
-    duration: "6 months",
+    period: "March 2024 – April 2024",
+    duration: "1 month",
     description: [
-      "Assisted in developing frontend components for enterprise applications",
-      "Learned industry best practices and coding standards",
-      "Worked with senior developers on real-world projects",
-      "Gained experience in version control with Git and GitHub",
+      "Supported software testing processes, including test case design, execution, and bug reporting.",
+      "Identified and documented software defects to ensure product quality and compliance with standards.",
+      "Collaborated with senior QA engineers and developers to perform functional and regression testing.",
+      "Gained hands-on experience with testing tools, QA methodologies, and software development life cycle (SDLC).",
+      "Enhanced professional skills in communication, teamwork, and analytical problem-solving while working with the SQTC team.",
     ],
     current: false,
-    tech: ["JavaScript", "HTML/CSS", "Git", "React"],
-    achievements: 3,
+    tech: ["SQA", "Manual Testing", "SDLC", "Excel", "Report Writing"],
     type: "Internship",
   },
 ];
@@ -83,23 +73,23 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="relative py-24 px-6 sm:px-8 bg-linear-to-br from-white via-blue-50/50 to-white dark:from-purple-950/20 dark:via-slate-950 dark:to-slate-950 overflow-hidden"
+      className="relative py-24 px-6 sm:px-8 bg-linear-to-br from-white via-blue-50/50 to-white dark:from-purple-950/20 dark:via-slate-950 dark:to-purple-950/20 overflow-hidden"
     >
       {/* Background gradients */}
       <motion.div
         animate={{ y: [0, -25, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-0 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"
+        className="absolute top-0 right-10 w-72 h-72 rounded-full blur-3xl"
       />
       <motion.div
         animate={{ y: [0, 20, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-0 left-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"
+        className="absolute bottom-0 left-10 w-80 h-80 rounded-full blur-3xl"
       />
 
       {/* Header */}
       <div className="max-w-5xl mx-auto text-center relative z-10 mb-16">
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.6 }}
@@ -111,11 +101,9 @@ export default function Experience() {
           <span className="text-sm font-medium text-purple-600 dark:text-purple-300 tracking-wide uppercase font-rowdies">
             Career Path
           </span>
-        </motion.div>
+        </motion.div> */}
 
-        <h2 className="text-5xl font-bold mb-4 bg-linear-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent font-lobster">
-          My Experience
-        </h2>
+        <h2 className="text-5xl font-bold mb-4 font-lobster">My Experience</h2>
         <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto font-serif">
           A journey through innovation, growth, and building impactful digital
           experiences.
@@ -203,10 +191,10 @@ export default function Experience() {
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  {/* <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                     <Star className="w-4 h-4 text-yellow-500" />
                     {exp.achievements}+ achievements
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </motion.div>

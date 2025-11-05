@@ -28,7 +28,7 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-white via-blue-50/50 to-white dark:from-purple-950/20 dark:via-slate-950 dark:to-slate-950 relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-white via-blue-50/50 to-white dark:from-purple-950/20 dark:via-slate-950 dark:to-purple-950/20 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div

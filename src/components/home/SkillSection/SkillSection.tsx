@@ -1,18 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client";
 
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import {
-  Code2,
   Database,
   Server,
   Palette,
-  Users,
   Sparkles,
-  Cpu,
-  Globe,
   Zap,
 } from "lucide-react";
 import css from "@/asset/images/CSS3.png";
@@ -196,7 +192,7 @@ export default function Skills() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -208,13 +204,10 @@ export default function Skills() {
             <span className="text-lg font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 px-4 py-2 rounded-full font-rowdies">
               Tech Stack
             </span>
-          </motion.div>
+          </motion.div> */}
 
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 font-lobster">
-            Technologies I{" "}
-            <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Work With
-            </span>
+            Technologies I Work With
           </h2>
 
           <motion.div

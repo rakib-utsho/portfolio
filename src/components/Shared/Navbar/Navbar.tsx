@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
+import Link from "next/link";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -13,8 +14,8 @@ const navLinks = [
   { name: "Experience", href: "#experience" },
   { name: "Services", href: "#services" },
   { name: "Projects", href: "#projects" },
-  { name: "Blogs", href: "#blogs" },
-  { name: "Contact", href: "/contact" },
+  { name: "Activities", href: "#activities" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export const Navbar = () => {
@@ -55,14 +56,16 @@ export const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-2xl bg-linear-to-r from-black/60 via-purple-500 to-blue-600 bg-clip-text text-transparent font-bitcount dark:from-white/75 dark:via-purple-500 dark:to-blue-600 "
-          >
-            RakibUtsho<span className="text-red-700 font-mono">.</span>
-          </motion.div>
+          <Link href={"/"}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-2xl bg-linear-to-r from-black/60 via-purple-500 to-blue-600 bg-clip-text text-transparent font-bitcount dark:from-white/75 dark:via-purple-500 dark:to-blue-600 "
+            >
+              RakibUtsho<span className="text-red-700 font-mono">.</span>
+            </motion.div>
+          </Link>
           <div className="hidden md:flex items-center justify-between space-x-8">
             {navLinks.map((link, index) => (
               <motion.button

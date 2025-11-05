@@ -10,7 +10,6 @@ import {
   Palette,
   Database,
   Cloud,
-  Sparkles,
 } from 'lucide-react';
 
 const services = [
@@ -83,19 +82,19 @@ export default function Services() {
     <section
       id="services"
       ref={ref}
-      className="relative py-24 px-6 sm:px-10 bg-linear-to-b from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 overflow-hidden"
+      className="relative py-24 px-6 sm:px-10 bg-linear-to-br from-white via-blue-50/50 to-white dark:from-slate-950 dark:via-purple-950/20 dark:to-slate-950 overflow-hidden"
     >
       {/* Decorative gradient orbs */}
-      <motion.div
+      {/* <motion.div
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-20 -left-20 w-96 h-96 bg-linear-to-r from-purple-500/20 to-blue-500/20 blur-3xl rounded-full"
-      />
-      <motion.div
+        className="absolute -top-20 -left-20 w-96 h-96 bg-linear-to-r blur-3xl rounded-full"
+      /> */}
+      {/* <motion.div
         animate={{ y: [0, 20, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-linear-to-tl from-blue-500/20 to-cyan-500/10 blur-3xl rounded-full"
-      />
+      /> */}
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
@@ -105,16 +104,16 @@ export default function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-3 px-5 py-2 bg-linear-to-r from-purple-500/10 to-blue-500/10 rounded-full border border-purple-500/20 dark:border-purple-400/10 mb-4">
+          {/* <div className="inline-flex items-center gap-3 px-5 py-2 bg-linear-to-r from-purple-500/10 to-blue-500/10 rounded-full border border-purple-500/20 dark:border-purple-400/10 mb-4">
             <Sparkles className="w-5 h-5 text-purple-500" />
-            <span className="text-purple-600 dark:text-purple-300 font-semibold tracking-wide">
+            <span className="text-purple-600 dark:text-purple-300 font-semibold tracking-wide font-rowdies">
               My Expertise
             </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-linear-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          </div> */}
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 font-lobster">
             Services I Offer
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto font-serif">
             Combining creativity, technology, and precision to deliver
             exceptional digital solutions for modern businesses.
           </p>
@@ -144,14 +143,14 @@ export default function Services() {
                     >
                       <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-purple-500 group-hover:to-blue-500 transition-all duration-500">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-purple-500 group-hover:to-blue-500 transition-all duration-500 font-lobster">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-antic">
                       {service.description}
                     </p>
                   </div>
-                  <motion.div
+                  {/* <motion.div
                     whileHover={{ x: 4 }}
                     className="mt-6 flex items-center text-purple-600 dark:text-purple-400 font-semibold text-sm"
                   >
@@ -164,11 +163,11 @@ export default function Services() {
                     >
                       →
                     </motion.span>
-                  </motion.div>
+                  </motion.div> */}
                 </div>
 
                 {/* Glow effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-3xl bg-linear-to-br from-purple-500/20 to-blue-500/20" />
+                {/* <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-3xl bg-linear-to-br" /> */}
               </motion.div>
             );
           })}

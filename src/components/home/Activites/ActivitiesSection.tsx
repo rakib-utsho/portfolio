@@ -54,7 +54,7 @@ export default function Activities() {
     <section
       id="activities"
       ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-gray-50 to-white dark:from-slate-900 dark:to-slate-950"
+      className="py-20 px-4 relative sm:px-6 lg:px-8 bg-linear-to-br from-white via-blue-50/50 to-white dark:from-slate-950 dark:via-purple-950/20 dark:to-slate-950 overflow-hidden h-[65vh]"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -64,11 +64,11 @@ export default function Activities() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 font-lobster">
             Extra Curricular Activities
           </h2>
           <div className="w-24 h-1 bg-purple-500 mx-auto rounded-full" />
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 font-serif">
             Sharing my experiences and community contributions
           </p>
         </motion.div>
@@ -94,13 +94,13 @@ export default function Activities() {
                     <IconComponent className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <div className="text-sm font-semibold text-purple-500 mb-2">
+                    <div className="text-sm font-semibold text-purple-500 mb-2 font-antic">
                       {activity.year}
                     </div>
-                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 font-serif">
                       {activity.title}
                     </h4>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm font-antic">
                       {activity.description}
                     </p>
                   </div>

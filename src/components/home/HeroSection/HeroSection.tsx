@@ -151,16 +151,16 @@ export default function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center relative"
+            className="flex justify-center relative py-10"
           >
-            <div className="relative w-72 h-72 md:w-96 md:h-96">
+            <div className="relative w-60 h-60 md:w-96 md:h-96">
               {/* Profile Image */}
               <div className="w-full h-full rounded-full border-4 border-blue-500/40 dark:border-purple-500/40 flex items-center justify-center overflow-hidden shadow-xl bg-white dark:bg-gray-900">
                 <Image
                   src={profileImg}
                   alt="Profile"
-                  width={400}
-                  height={400}
+                  width={600}
+                  height={600}
                   className="rounded-full object-cover"
                 />
               </div>

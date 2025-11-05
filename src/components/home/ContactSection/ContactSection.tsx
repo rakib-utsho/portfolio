@@ -34,7 +34,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-gray-50 to-white dark:from-slate-900 dark:to-slate-950"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-white via-blue-50/50 to-white dark:from-purple-950/20 dark:via-slate-950 dark:to-purple-950/20 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -44,11 +44,11 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 font-lobster">
             Get In Touch
           </h2>
           <div className="w-24 h-1 bg-purple-500 mx-auto rounded-full" />
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 font-serif">
             Let&#39;s discuss your next project
           </p>
         </motion.div>
@@ -73,7 +73,7 @@ export default function Contact() {
                   <motion.div
                     key={idx}
                     whileHover={{ x: 8, scale: 1.02 }}
-                    className="flex items-center gap-4 p-4 bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300"
+                    className="flex items-center gap-4 p-4 bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300 font-antic"
                   >
                     <div className="p-3 bg-purple-500 rounded-lg shrink-0">
                       <Icon className="w-6 h-6 text-white" />
@@ -89,7 +89,7 @@ export default function Contact() {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Follow Me</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 font-serif">Follow Me</h3>
               <div className="flex gap-4">
                 {[
                   { icon: Linkedin, href: 'https://linkedin.com' },
@@ -118,7 +118,7 @@ export default function Contact() {
           <motion.form
             variants={itemVariants}
             onSubmit={handleSubmit}
-            className="space-y-6"
+            className="space-y-6 font-antic"
           >
             <input
               type="text"
@@ -151,7 +151,7 @@ export default function Contact() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              className="w-full px-8 py-4 bg-purple-500 text-white rounded-xl font-semibold hover:bg-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="w-full px-8 py-4 bg-purple-500 text-white rounded-xl font-semibold hover:bg-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 font-serif"
             >
               <Send className="w-5 h-5" /> Send Message
             </motion.button>
