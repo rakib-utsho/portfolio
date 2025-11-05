@@ -26,25 +26,52 @@ export const Navbar = () => {
 
   useEffect(() => {
     setMounted(true);
-
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    const navbarHeight = 80; // Height offset for mobile navbar
+    // Close mobile menu first
+    setIsOpen(false);
+    
+    // Use setTimeout to ensure the menu is closed before scrolling
+    setTimeout(() => {
+      const elementId = href.replace('#', '');
+      const element = document.getElementById(elementId);
+      // Calculate the position to scroll to (accounting for navbar height)
+      const navbarHeight = 64; // h-16 = 4rem = 64px
+      
+      if (element) {
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight;
 
-    if (element) {
-      const position =
-        element.getBoundingClientRect().top + window.scrollY - navbarHeight;
-      window.scrollTo({ top: position, behavior: "smooth" });
-      setIsOpen(false);
-    }
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      } else {
+        // Fallback: try regular query selector
+        const fallbackElement = document.querySelector(href);
+        if (fallbackElement) {
+          const fallbackPosition = fallbackElement.getBoundingClientRect().top + window.pageYOffset;
+          const fallbackOffset = fallbackPosition - navbarHeight;
+          
+          window.scrollTo({
+            top: fallbackOffset,
+            behavior: "smooth"
+          });
+        }
+      }
+    }, 100); // Small delay to ensure menu is closed
+  };
+
+  // Alternative approach using href for direct anchor navigation
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    scrollToSection(href);
   };
 
   if (!mounted) return null;
@@ -72,7 +99,6 @@ export const Navbar = () => {
               RakibUtsho<span className="text-red-700 font-mono">.</span>
             </motion.div>
           </Link>
-
           <div className="hidden md:flex items-center justify-between space-x-8">
             {navLinks.map((link, index) => (
               <motion.button
@@ -80,19 +106,19 @@ export const Navbar = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
-                onClick={() => scrollToSection(link.href)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200 font-medium font-antic cursor-pointer"
               >
                 {link.name}
               </motion.button>
             ))}
-
             <motion.button
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8 }}
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-blue-500 dark:hover:bg-purple-500 transition-all duration-300 cursor-pointer"
+              aria-label="Toggle theme"
             >
               {theme === "dark" ? (
                 <Sun className="w-5 h-5 text-gray-800 dark:text-white" />
@@ -107,6 +133,7 @@ export const Navbar = () => {
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-blue-500 dark:hover:bg-purple-500 transition-all duration-300"
+              aria-label="Toggle theme"
             >
               {theme === "dark" ? (
                 <Sun className="w-5 h-5 text-white" />
@@ -115,15 +142,17 @@ export const Navbar = () => {
               )}
             </button>
             <button
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+              aria-label="Toggle menu"
             >
               {isOpen ? <X /> : <Menu />}
             </button>
           </div>
         </div>
       </div>
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -137,7 +166,7 @@ export const Navbar = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200 font-antic"
                 >
                   {link.name}
