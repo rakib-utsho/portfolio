@@ -3,6 +3,7 @@ import React from "react";
 import HeroSection from "./HeroSection/HeroSection";
 import About from "./AboutSection/AboutSection";
 import Skills from "./SkillSection/SkillSection";
+import Experience from "./ExperienceSection/ExperienceSection";
 
 function Home() {
   return (
@@ -10,6 +11,7 @@ function Home() {
       <HeroSection />
       <About />
       <Skills />
+      <Experience/>
     </div>
   );
 }
