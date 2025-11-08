@@ -22,7 +22,10 @@ const defaultPortfolioData: PortfolioData = {
     profileImage: "",
     cv: "",
   },
-  education: [],
+  about: {
+    description: "",
+    education: [],
+  },
   skills: {
     frontend: [],
     backend: [],
@@ -56,7 +59,7 @@ function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0d0d0d] transition-colors duration-300">
       <HeroSection profileData={portfolio.profile} />
-      <About educationData={portfolio.education} />
+      <About aboutData={portfolio.about} />
       <Skills skillsData={portfolio.skills} />
       <Experience experienceData={portfolio.experience} />
       <Services />

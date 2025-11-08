@@ -1,10 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Mail, Phone, MapPin, Send, Linkedin, Github, Facebook, BookOpen } from "lucide-react";
+import React, { useRef, useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Linkedin,
+  Github,
+  Facebook,
+  BookOpen,
+} from "lucide-react";
 import { SocialLinksProps } from "@/type/types";
+import { useContactFormMutation } from "@/redux/api/service/serviceApi";
+import { toast } from "sonner";
 
 export default function Contact({ socialLinks }: SocialLinksProps) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -15,12 +27,6 @@ export default function Contact({ socialLinks }: SocialLinksProps) {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Thank you for your message! I will get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
-  };
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -30,6 +36,25 @@ export default function Contact({ socialLinks }: SocialLinksProps) {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  };
+
+  const [contactForm, { isLoading }] = useContactFormMutation();
+
+  // ✅ Handle Form Submission with API call
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await contactForm(formData).unwrap();
+      toast.success(
+        "✅ Thank you for your message! I will get back to you soon."
+      );
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err: any) {
+      toast.error(
+        err.message || "❌ Failed to send message. Please try again later."
+      );
+    }
   };
 
   const itemVariants: Variants = {
@@ -48,7 +73,7 @@ export default function Contact({ socialLinks }: SocialLinksProps) {
     { icon: Facebook, href: socialLinks?.facebookUrl },
     // Medium doesn't have an icon in lucide-react, fallback to BookOpen or any suitable icon
     { icon: BookOpen, href: socialLinks?.mediumUrl },
-  ].filter(item => item.href); // remove undefined links
+  ].filter((item) => item.href); // remove undefined links
 
   return (
     <section
@@ -83,9 +108,13 @@ export default function Contact({ socialLinks }: SocialLinksProps) {
           <motion.div variants={itemVariants} className="space-y-8">
             {/* Contact Info Cards */}
             <div className="space-y-4">
-              {[ 
-                { icon: Mail, label: "Email", value: "rakibul@example.com" },
-                { icon: Phone, label: "Phone", value: "+880 1234-567890" },
+              {[
+                {
+                  icon: Mail,
+                  label: "Email",
+                  value: "rakibutsho1920@gmail.com",
+                },
+                { icon: Phone, label: "Phone", value: "+880 1707-934655" },
                 { icon: MapPin, label: "Location", value: "Dhaka, Bangladesh" },
               ].map((item, idx) => {
                 const Icon = item.icon;
@@ -177,7 +206,8 @@ export default function Contact({ socialLinks }: SocialLinksProps) {
               type="submit"
               className="w-full px-8 py-4 bg-purple-500 text-white rounded-xl font-semibold hover:bg-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 font-serif cursor-pointer"
             >
-              <Send className="w-5 h-5" /> Send Message
+              <Send className="w-5 h-5" />{" "}
+              {isLoading ? "Sending..." : "Send Message"}
             </motion.button>
           </motion.form>
         </motion.div>

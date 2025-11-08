@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { Building2, Calendar, GraduationCap } from "lucide-react";
 import { AboutProps } from "@/type/types";
 
-export default function About({ educationData }: AboutProps) {
+export default function About({ aboutData }: AboutProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -19,6 +19,8 @@ export default function About({ educationData }: AboutProps) {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
+
+  const educationData = aboutData?.education;
 
   return (
     <section
@@ -51,25 +53,7 @@ export default function About({ educationData }: AboutProps) {
             className="bg-linear-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-800"
           >
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed font-serif text-justify">
-              Hi, I am{" "}
-              <span className="text-purple-600 dark:text-purple-400 font-semibold">
-                Md. Rakibul Islam
-              </span>
-              , a passionate Full Stack Developer from Bangladesh. Currently
-              working as{" "}
-              <span className="font-semibold text-gray-900 dark:text-white">
-                Junior Frontend Engineer at SM Technology (Betopia Group)
-              </span>{" "}
-              for the last 7 months. Expert in{" "}
-              <span className="font-semibold text-gray-900 dark:text-white">
-                MERN Stack
-              </span>
-              , currently learning{" "}
-              <span className="font-semibold text-gray-900 dark:text-white">
-                Go (Golang)
-              </span>{" "}
-              to strengthen backend skills. Completed BSc in CSE from BUBT
-              (2020–2023).
+              {aboutData?.description}
             </p>
           </motion.div>
 

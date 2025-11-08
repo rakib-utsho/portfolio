@@ -8,8 +8,25 @@ export const portfolioApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
-	
+
+    getAbout: builder.query({
+      query: () => ({
+        url: "/portfolio/about",
+        method: "GET",
+      }),
+    }),
+    contactForm: builder.mutation({
+      query: (data) => ({
+        url: "/contact",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useGetPortfolioQuery } = portfolioApi;
+export const {
+  useGetPortfolioQuery,
+  useGetAboutQuery,
+  useContactFormMutation,
+} = portfolioApi;

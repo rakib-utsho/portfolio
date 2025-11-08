@@ -17,6 +17,11 @@ export interface Education {
   duration: string;
 }
 
+export interface About {
+  description: string;
+  education: Education[];
+}
+
 export interface Skill {
   _id: string;
   name: string;
@@ -68,7 +73,7 @@ export interface SocialLinks {
 
 export interface PortfolioData {
   profile: Profile;
-  education: Education[];
+  about: About;
   skills: Skills;
   experience: Experience[];
   projects: Project[];
@@ -82,7 +87,7 @@ export interface HeroProps {
 }
 
 export interface AboutProps {
-  educationData: Education[];
+  aboutData: About;
 }
 
 export interface SkillsProps {
